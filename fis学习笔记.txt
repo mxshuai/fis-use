@@ -1,9 +1,9 @@
-���Ը���Ĭ�Ϸ�����Ŀ¼����ִ�з�����ָ��������Ŀ¼
+可以更改默认服务器目录并且执行发布到指定服务器目录
 fis release --dest ./output && fis server start --root ./output
 
-��������
+常用命令
 
-��װfis
+安装fis
 npm install -g fis
 
 fis server start
@@ -25,22 +25,24 @@ fis release -d d:/work/output
 fis releaes -d remote,qa,rd,output,preview,D:/work/output
 
 
-���� --md5 [level] �� -m [level] �������ڱ����ʱ����Զ��ļ��Զ���md5�����Ӵ˸���ھ�̬��Դurl����д?version=xxx��ʱ��
+添加 --md5 [level] 或 -m [level] 参数，在编译的时候可以对文件自动加md5戳，从此告别在静态资源url后面写?version=xxx的时代
 
-���� --lint �� -l ������֧���ڱ����ʱ�������Ŀ�����Զ�������
+添加 --lint 或 -l 参数，支持在编译的时候根据项目配置自动代码检查
 
-���� --test �� -t ������֧���ڱ����ʱ��Դ�������Զ�������
+添加 --test 或 -t 参数，支持在编译的时候对代码进行自动化测试
 
-���� --pack �� -p �������Բ����ļ�������Ŀ���ý��д��
+添加 --pack 或 -p 参数，对产出文件根据项目配置进行打包
 
-���� --optimize �� -o ��������js��css��html����ѹ��
+添加 --optimize 或 -o 参数，对js、css、html进行压缩
 
-���� --domains �� -D ������Ϊ��Դ����domain����
+添加 --domains 或 -D 参数，为资源添加domain域名
 
-npm install -g fis-postpackager-simple����װfis�����
+以上这些功能都会根据配置文件中的true和false进行设置，不写按默认设置
+
+npm install -g fis-postpackager-simple（安装fis插件）
 
 
 
 
 
-��FIS�У������ʽ�ļ�������ͼƬʱ��ʹ��asd.jpg?__sprite����ô����ʽ�ļ�ʹ�� pack ���ý��кϲ��󣬲�������ϲ���ʽ�ļ������Ὣ���б�ʶ�˺ϲ���ͼƬ���кϲ�������
+在FIS中，如果样式文件中引用图片时，使用asd.jpg?__sprite，那么将样式文件使用 pack 设置进行合并后，不仅仅会合并样式文件，还会将所有标识了合并的图片进行合并处理。
