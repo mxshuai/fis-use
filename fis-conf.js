@@ -1,10 +1,10 @@
-// ÉèÖÃÍ¼Æ¬ºÏ²¢µÄ×îĞ¡¼ä¸ô
+// è®¾ç½®å›¾ç‰‡åˆå¹¶çš„æœ€å°é—´éš”
 fis.config.set('settings.spriter.csssprites.margin', 20);
 
-// È¡ÏûÏÂÃæµÄ×¢ÊÍ¿ªÆôsimple²å¼ş£¬×¢ÒâĞèÒªÏÈ½øĞĞ²å¼ş°²×° npm install -g fis-postpackager-simple
+// ä¸‹é¢çš„å¼€å¯simpleæ’ä»¶ï¼Œæ³¨æ„éœ€è¦å…ˆè¿›è¡Œæ’ä»¶å®‰è£… npm install -g fis-postpackager-simple
   fis.config.set('modules.postpackager', 'simple');
 
-// È¡ÏûÏÂÃæµÄ×¢ÊÍÉèÖÃ´ò°ü¹æÔò
+// ä¸‹é¢çš„è®¾ç½®æ‰“åŒ…è§„åˆ™
  fis.config.set('pack', {
       '/js/aaa.js': [
          'js/slide.js',
@@ -12,37 +12,59 @@ fis.config.set('settings.spriter.csssprites.margin', 20);
 		  'js/slides.min.jquery.js',
        
       ],
-     // È¡ÏûÏÂÃæµÄ×¢ÊÍÉèÖÃCSS´ò°ü¹æÔò£¬CSS´ò°üµÄÍ¬Ê±»á½øĞĞÍ¼Æ¬ºÏ²¢
+     // ä¸‹é¢çš„è®¾ç½®CSSæ‰“åŒ…è§„åˆ™ï¼ŒCSSæ‰“åŒ…çš„åŒæ—¶ä¼šè¿›è¡Œå›¾ç‰‡åˆå¹¶
       '/css/aaa.css': '**.css'
  });
 
-// È¡ÏûÏÂÃæµÄ×¢ÊÍ¿ÉÒÔ¿ªÆôsimple¶ÔÁãÉ¢×ÊÔ´µÄ×Ô¶¯ºÏ²¢
+// ä¸‹é¢çš„å¯ä»¥å¼€å¯simpleå¯¹é›¶æ•£èµ„æºçš„è‡ªåŠ¨åˆå¹¶
  fis.config.set('settings.postpackager.simple.autoCombine', true);
 fis.config.merge({
     roadmap : {
         domain : {
-            //ËùÓĞcssÎÄ¼şÌí¼Óhttp://localhost:8080×÷ÎªÓòÃû
+            //æ‰€æœ‰cssæ–‡ä»¶æ·»åŠ http://localhost:8080ä½œä¸ºåŸŸå
             '**.css' : 'http://localhost:8080'
         },
         path : [
-            {
-                //ËùÓĞµÄjsÎÄ¼ş
+			 {
+                //æ‰€æœ‰çš„jsæ–‡ä»¶
                 reg : '**.js',
-                //·¢²¼µ½/static/js/xxxÄ¿Â¼ÏÂ
-                release : '$&'
+                //å‘å¸ƒåˆ°/ceshi/fabu/jsç›®å½•ä¸‹
+				 release : '/ceshi/fabu/$&',
+				 //å‘½ä»¤è¡Œè¾“å…¥-m éœ€è¦åŠ md5å°±ç”¨trueï¼ŒæŠŠä¸éœ€è¦åŠ md5çš„éƒ½è®¾ä¸ºfalse
+				 //åœ¨å‘½ä»¤è¡Œè¾“å…¥æŸä¸ªå‘½ä»¤ï¼Œæ‰ä¼šéå†æ–‡æ¡£ï¼Œæ‰§è¡Œæ‘¸ä¸ªåŠŸèƒ½ï¼Œå†æ ¹æ®trueå’Œfalseåˆ¤æ–­ç”¨ä¸ç”¨è¿™ä¸ªåŠŸèƒ½
+				 useHash:true
+				 // release : '/ceshi/fabu/$&'
+				
+				
             },
+          		
             {
-                //ËùÓĞµÄcssÎÄ¼ş
+                //æ‰€æœ‰çš„cssæ–‡ä»¶
                 reg : '**.css',
-                //·¢²¼µ½/static/css/xxxÄ¿Â¼ÏÂ
-                release : '$&'
+                //å‘å¸ƒåˆ°/ceshi/fabu/cssç›®å½•ä¸‹
+                release : '/ceshi/fabu/$&',
+				useHash : false
+
             },
             {
-                //ËùÓĞimageÄ¿Â¼ÏÂµÄ.png£¬.gifÎÄ¼ş
-                reg : /^\/images\/(.*\.(?:png|gif|jpg))/i,
-                //·¢²¼µ½/static/pic/xxxÄ¿Â¼ÏÂ
-                release : 'images/$1'
-            }
+                //æ‰€æœ‰imagesç›®å½•ä¸‹çš„.pngï¼Œ.gifæ–‡ä»¶
+                reg : /^\/images\/(.*\.(?:png|gif))/i,
+                //å‘å¸ƒåˆ°/ceshi/fabu/imagesç›®å½•ä¸‹
+                release : '/ceshi/fabu/images/$1',
+				useHash : false
+			
+            },
+			//å°†é»˜è®¤åœ¨cssæ–‡ä»¶å¤¹ä¸‹ç”Ÿæˆçš„åˆå¹¶å›¾ç‰‡å‘å¸ƒåˆ°æŒ‡å®šçš„ä½ç½®ä¸Š
+			 {
+      reg : /^\/css\/(.*\.(?:png|gif))/i,
+   release : '/ceshi/fabu/images/$1',
+   useHash : false
+    },
+	//å°†htmlæ–‡ä»¶ä¸€å¹¶ç§»åˆ°å‘å¸ƒç›®å½•ä¸‹
+	 {
+      reg : 'index.html',
+   release : '/ceshi/fabu/$&'
+    }
         ]
     }
 });
